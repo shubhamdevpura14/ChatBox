@@ -1,53 +1,41 @@
 import webapp2
-from google.appengine.ext import ndb
+from modelfile import *
 import json
-class User(ndb.Model):
-    name = ndb.StringProperty()
-    age = ndb.StringProperty()
-    address = ndb.StringProperty()
-    date = ndb.DateTimeProperty(auto_now_add=True)
 
-class MainPage(webapp2.RequestHandler):
-      def get(self):
-        users =  User.query().fetch()
-        d=[]
-        for x in users:
-            d.append({
-                'name': x.name,
-                'key': x.key.urlsafe()
-            })
-        
-class Submit(webapp2.RequestHandler):
+
+class MsgHandler(webapp2.RequestHandler):
     def post(self):
-        dataji =  json.loads(self.request.body)
-        user = User()
-        user.name = dataji.get('name')
-        user.age = dataji.get('age')
-        user.address = dataji.get('address')
-        ref = user.put()
+        
+        messageq = json.loads(self.request.body)
+        print messageq
+        message = Message()
+        message.user = messageq.get('user')
+        message.whom = messageq.get('whom')
+        message.text = messageq.get('text')
+        message.put()
+        self.response.out.write("Done")
 
-        users =  User.query().fetch()
-        d=[]
-        for x in users:
-            d.append({
-                'name': x.name,
-                'key': x.key.urlsafe()
-            })
-        self.response.out.write(json.dumps(d))
-class Submit1(webapp2.RequestHandler):
+class MsHandler(webapp2.RequestHandler):
     def get(self):
-        users =  User.query().fetch()
+        
+        qry = Message.query().order(-Message.user)
         d=[]
-        for x in users:
+        for x in qry:
             d.append({
-                'name': x.name,
+                'user': x.user,
                 'key': x.key.urlsafe()
-            })
+            })   
         self.response.out.write(json.dumps(d))
-    
-                                          
+    class(object):
+        """docstring for"""
+        def __init__(self, arg):
+            super, self).__init__()
+            self.arg = arg
+            
+
 app = webapp2.WSGIApplication([
-    ('/handlers/', MainPage),
-    ('/handlers/submit', Submit),
-    ('/handlers/get', Submit1),
+    # ('/handlers/', MainPage),
+    # ('/handlers/submit', Submit),
+    ('/handlers/get', MsHandler),
+    ('/handlers/save',MsgHandler),
 ])
