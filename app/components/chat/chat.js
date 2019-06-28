@@ -3,6 +3,6 @@ app.controller('friend-list', function ($scope, $http) {
         $scope.contacts = response.data; 
         })
         function getDatafromdb() {
-            return $http.get('/handlers/get')
-        }
+            return $http.get('http://localhost:8080/handlers/get')
+            }
 });
