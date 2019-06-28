@@ -34,9 +34,15 @@
  }
  footer{
  	position: absolute;
- 	margin-left: 20px;
+ 	width: 100%;
  	bottom: 5px;
  }
  .message-input{
- 	width: 90%;
+ 	padding: 11px;
+ 	margin-left: 10px; 
+ 	width: 100%;
+ }
+ .input-box{
+ 	background: transparent;
+ 	width: 75.8%;
  }
