@@ -2,19 +2,19 @@
                		<center>MESSAGES</center>
                	</md-toolbar> -->
               
-                    <md-toolbar style="background-color: #cccccc">
+                    <md-toolbar style="background-color: #1A5276">
       <h3>
         <center>CHAT BOX</center>
       </h3>
   </md-toolbar>
 
 
-               	<div layout="column" style="height: 100%">
+  <div layout="column" style="height: 100%">
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left"
                md-disable-backdrop="" md-whiteframe="4" md-is-locked-open="true" style="max-height:100%; overflow-x: hidden; background-color: white; width:25%;height:-webkit-fill-available;">
-               <md-toolbar>
-               		<center>CHATS</center>
+               <md-toolbar style="background-color:#2980B9">
+               		<h4><center>CHATS</center></h4>
                	</md-toolbar>
                  <md-content>
                   <md-list flex ng-controller="friend-list">
@@ -29,8 +29,8 @@
  	
     		<div class="msg">
     			<div class="msghd">
-    				  	<md-toolbar style="width: 100%">
-               		<center>MESSAGES</center>
+    				  	<md-toolbar style="width: 100%;background-color:#2980B9">
+               		<h4><center>MESSAGES</center></h4>
                	</md-toolbar>
           </div>
 
@@ -39,7 +39,10 @@
                 <div layout layout-align="start center">
                     <div class="message-input" layout layout-align="start center">
                       <input class="input-box" type="text" name="input" placeholder="Type a message.." autocomplete="off" autofocus></input>
-                        <button mat-button>SEND</button> 
+                        <button fab-button>SEND</button> 
+                        </div>
+                      </div>
+                    </div>
             </footer>
         </div>
 	          
