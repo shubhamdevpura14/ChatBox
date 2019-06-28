@@ -34,8 +34,8 @@
  }
  footer{
  	position: absolute;
- 	margin: 20px;
- 	bottom: 0;
+ 	margin-left: 20px;
+ 	bottom: 5px;
  }
  .message-input{
  	width: 90%;
