@@ -17,8 +17,9 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     templateUrl : "/component/login/login.html"
   })
   .when("/chat", {
-    templateUrl : "/component/chat/chat.html"
-  })
-  .otherwise({redirectTo: '/login'});
+    templateUrl : "/component/chat/chat.html",
+    controller: 'friend-list',
+    })
+  //.otherwise({redirectTo: '/login'});
 }]);
 
