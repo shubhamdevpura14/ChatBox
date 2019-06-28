@@ -1,0 +1,28 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /handlers.*
+  script: main.app
+
+
+- url: /lib
+  static_dir: app/lib
+
+- url: /component
+  static_dir: app/components
+
+- url: /statics
+  static_dir: app/statics
+
+- url: /.*
+  static_files: app/index.html
+  upload: app/index.html
+
+libraries:
+- name: webapp2
+  version: latest
+
+  

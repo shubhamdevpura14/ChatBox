@@ -1,0 +1,32 @@
+<body ng-app="customSidenavDemo">
+<div ng-controller="AppCtrl" layout="column" style="height: 500px;">
+
+
+
+ <md-sidenav class="md-sidenav-left" md-component-id="left"
+                md-disable-backdrop="" md-whiteframe="4">
+  </md-sidenav>
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-aria.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.19/angular-material.min.js"></script>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+
+<script >var aa = angular
+  .module('customSidenavDemo', ['ngMaterial', 'ngAnimate', 'ngAria'])
+  .controller('AppCtrl', function ($scope, $mdSidenav) {
+    $scope.toggleLeft = buildToggler('left');
+
+    function buildToggler(componentId) {
+      return function() {
+        $mdSidenav(componentId).toggle();
+      };
+    }
+  });
+</script>
+</body> 

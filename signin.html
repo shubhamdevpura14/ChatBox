@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script type="text/javascript">
+
+        var app = angular.module('postserviceApp', []);
+
+        app.controller('postserviceCtrl', function ($scope, $http) {
+
+        $scope.name = null;
+
+        $scope.age = null;
+
+        $scope.address = null;
+
+        $scope.lblMsg = null;
+
+        $scope.postdata = function (name, age, address) {
+
+        var data = {
+
+        name: name,
+
+        age: age,
+
+        address: address
+
+        };
+        getData(data)
+        }
+        getDatafromdb().then( function(d) {
+            $scope.data = d.data;
+        })
+        //Call the services
+    function getData(data) {
+        var ss = JSON.stringify(data);
+        return $http.post('http://localhost:8080/handlers/submit', ss).then( function(d) {
+            getDatafromdb()
+              return d
+        })
+    }
+    function getDatafromdb() {
+        return $http.get('http://localhost:8080/handlers/get')
+    }
+      
+    });
+
+    </script>
+
+    </head>
+
+    <body>
+
+    <div ng-app="postserviceApp" ng-controller="postserviceCtrl">
+
+    <div>
+
+    Name : <input ng-model="name" /><br/><br/>
+
+    Age : <input ng-model="age" /><br/><br/>
+
+    Address : <input ng-model="address" /><br/><br/>
+
+    <input type="submit" value="Send" ng-click="postdata(name, age, address)" /> <br/><br/>
+
+    </div>
+    <h1 ng-if="data&&data.length">Users in db</h1>
+    <h3 ng-repeat="x in data">{{x.name}}</h3>
+    </div>
+
+    </body>
+
+</html>
