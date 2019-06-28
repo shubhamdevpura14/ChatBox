@@ -16,15 +16,16 @@
                <md-toolbar>
                		<center>CHATS</center>
                	</md-toolbar>
-          <md-content layout="column" flex>
-  		    <md-button class="md-accent" >USER</md-button>
-              <md-divider></md-divider>
-            <md-button class="md-accent">USER</md-button>
-	          <md-divider></md-divider>
-            <md-button  class="md-accent">USER</md-button>
-              <md-divider></md-divider>
-        </md-content>
-    </md-sidenav>	
+                 <md-content>
+                  <md-list flex ng-controller="friend-list">
+                    <md-list-item class="md-2-line" ng-repeat="x in data | filter: search_friend track by $index">
+                        <div class="md-list-item-text">
+                          <span>{{x.key}}</span> 
+                        </div>
+                    </md-list-item><md-divider style="width: 100%"></md-divider>
+                  </md-list>
+                </md-content>
+              </md-sidenav>	
  	
     		<div class="msg">
     			<div class="msghd">
