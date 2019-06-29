@@ -26,11 +26,34 @@ class MsHandler(webapp2.RequestHandler):
                 'key': x.key.urlsafe()
             })   
         self.response.out.write(json.dumps(d))
-    class(object):
-        """docstring for"""
-        def __init__(self, arg):
-            super, self).__init__()
-            self.arg = arg
+
+class Submit(webapp2.RequestHandler):
+    def post(self):
+        data =  json.loads(self.request.body)
+        user = User()
+        user.text = data.get('text')
+        ref = user.put()
+
+        users =  User.query().fetch()
+        d=[]
+        for x in users:
+            d.append({
+                'text': x.text,
+                'key': x.key.urlsafe()
+            })
+        self.response.out.write(json.dumps(d))
+
+
+class ListMsgs(webapp2.RequestHandler):
+    def get(self):
+        users =  User.query().fetch()
+        d=[]
+        for x in users:
+            d.append({
+                'text': x.text,
+                'key': x.key.urlsafe()
+            })
+        self.response.out.write(json.dumps(d))            
             
 
 app = webapp2.WSGIApplication([
@@ -38,4 +61,6 @@ app = webapp2.WSGIApplication([
     # ('/handlers/submit', Submit),
     ('/handlers/get', MsHandler),
     ('/handlers/save',MsgHandler),
+     ('/handlers/submit', Submit),
+    ('/handlers/ListMsgs', ListMsgs),
 ])

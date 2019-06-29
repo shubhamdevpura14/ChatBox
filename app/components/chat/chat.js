@@ -1,9 +1,16 @@
-app.controller('friend-list', function ($scope, $http) {
-    $http.get('/handlers/chat').then(function(response){
-        $scope.contacts = response.data; 
-        })
+ app.controller('message',function ($scope, $http){
+    $scope.text = null;
+    $scope.postdata = function (text) {
+        var data = {
+            text: text
+        };
+        sendData(data)
+    }
+    function sendData(data) {
+        var ss = JSON.stringify(data);
+        return $http.post('/handlers/submit', ss)
+                                }
         function getDatafromdb() {
-            return $http.get('http://localhost:8080/handlers/MsHandler')
-            }
-});
-
+        return $http.get('/handlers/ListMsgs')
+                               }                        
+ });

@@ -9,7 +9,7 @@
   </md-toolbar>
 
 
-  <div layout="column" style="height: 100%">
+  <div layout="column" style="height: 100%"  ng-controller="message">
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left"
                md-disable-backdrop="" md-whiteframe="4" md-is-locked-open="true" style="max-height:100%; overflow-x: hidden; background-color: white; width:25%;height:-webkit-fill-available;">
@@ -17,7 +17,7 @@
                		<h4><center>CHATS</center></h4>
                	</md-toolbar>
                  <md-content>
-                  <md-list flex ng-controller="friend-list">
+                  <md-list flex>
                     <md-list-item class="md-2-line" ng-repeat="x in data | filter: search_friend track by $index">
                         <div class="md-list-item-text">
                           <span>{{x.whom}}</span> 
@@ -38,8 +38,8 @@
              <div class="msg_type">
                 <div layout layout-align="start center">
                     <div class="message-input" layout layout-align="start center">
-                      <input class="input-box" type="text" name="input" placeholder="Type a message.." autocomplete="off" autofocus></input>
-                        <button fab-button>SEND</button> 
+                      <input class="input-box" ng-model="text" type="text" name="input" placeholder="Type a message.." autocomplete="off" autofocus></input>
+                        <button fab-button ng-click="postdata(text)">SEND</button> 
                         </div>
                       </div>
                     </div>

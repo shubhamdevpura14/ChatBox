@@ -6,5 +6,6 @@ class Message(ndb.Model):
     text = ndb.StringProperty()
 
 class User(ndb.Model):
+    text = ndb.StringProperty()
     user = ndb.StringProperty()
     password = ndb.StringProperty()
