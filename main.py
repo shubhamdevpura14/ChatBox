@@ -54,37 +54,22 @@ class ListMsgs(webapp2.RequestHandler):
                 'key': x.key.urlsafe()
             })
         self.response.out.write(json.dumps(d))            
-class Mail(webapp2.RequestHandler):
-    def post(self):
-        data =  json.loads(self.request.body)
-        user = User()
-        user.mail = data.get('mail')
-        ref = user.put()
 
-        users =  User.query().fetch()
-        d=[]
-        for x in users:
-            d.append({
-                'mail': x.mail,
-                'key': x.key.urlsafe()
-            })
-        self.response.out.write(json.dumps(d))
-
-class Mailget(webapp2.RequestHandler):
+class Mainpage(webapp2.RequestHandler):
     def get(self):
+        def get(self):
+        user = users.get_current_user()
+        user_mail = user.mail()
+        user_name = user.username()
+        check = User.query(User.mail == user_mail).get()
+        if not check:
+            post_data(user_mail)
+        self.redirect("/chat#!/chat")
         
-        qry = Message.query().order(-Message.user)
-        d=[]
-        for x in qry:
-            d.append({
-                'mail': x.mail,
-                'key': x.key.urlsafe()
-            })   
-        self.response.out.write(json.dumps(d))
              
 
 app = webapp2.WSGIApplication([
-    ('/handlers/', Mail),
+    webapp2.Route('/', Mainpage),
     # ('/handlers/submit', Submit),
     ('/handlers/get', MsHandler),
     ('/handlers/save',MsgHandler),
