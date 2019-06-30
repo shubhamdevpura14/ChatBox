@@ -3,14 +3,17 @@
     $scope.postdata = function (text) {
         var data = {
             text: text
+ 
         };
         sendData(data)
+        getDatafromdb(qry)
+
     }
     function sendData(data) {
         var ss = JSON.stringify(data);
-        return $http.post('/handlers/submit', ss)
+        return $http.post('/handlers/save', ss)
                                 }
         function getDatafromdb() {
-        return $http.get('/handlers/ListMsgs')
+        return $http.get('/handlers/')
                                }                        
  });

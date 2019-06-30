@@ -22,7 +22,7 @@ class MsHandler(webapp2.RequestHandler):
         d=[]
         for x in qry:
             d.append({
-                'user': x.user,
+                'text': x.text,
                 'key': x.key.urlsafe()
             })   
         self.response.out.write(json.dumps(d))
@@ -54,10 +54,37 @@ class ListMsgs(webapp2.RequestHandler):
                 'key': x.key.urlsafe()
             })
         self.response.out.write(json.dumps(d))            
-            
+class Mail(webapp2.RequestHandler):
+    def post(self):
+        data =  json.loads(self.request.body)
+        user = User()
+        user.mail = data.get('mail')
+        ref = user.put()
+
+        users =  User.query().fetch()
+        d=[]
+        for x in users:
+            d.append({
+                'mail': x.mail,
+                'key': x.key.urlsafe()
+            })
+        self.response.out.write(json.dumps(d))
+
+class Mailget(webapp2.RequestHandler):
+    def get(self):
+        
+        qry = Message.query().order(-Message.user)
+        d=[]
+        for x in qry:
+            d.append({
+                'mail': x.mail,
+                'key': x.key.urlsafe()
+            })   
+        self.response.out.write(json.dumps(d))
+             
 
 app = webapp2.WSGIApplication([
-    # ('/handlers/', MainPage),
+    ('/handlers/', Mail),
     # ('/handlers/submit', Submit),
     ('/handlers/get', MsHandler),
     ('/handlers/save',MsgHandler),

@@ -9,3 +9,4 @@ class User(ndb.Model):
     text = ndb.StringProperty()
     user = ndb.StringProperty()
     password = ndb.StringProperty()
+    mail = ndb.StringProperty()
