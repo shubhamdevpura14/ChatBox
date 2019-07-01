@@ -6,20 +6,20 @@ var app = angular.module('myApp', [
   'ngMaterial', 'ngAnimate', 'ngAria'
 ])
 app.
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+config(function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider
   .when("/", {
     template : "go to login page <a href='/#!/login'>login</a>"
   })
-  .when("/login", {
+  /*.when("/login", {
     templateUrl : "/component/login/login.html"
-  })
+  })*/
   .when("/chat", {
     templateUrl : "/component/chat/chat.html",
-    controller: 'message'
+    controller: 'friend-list'
     })
   //.otherwise({redirectTo: '/login'});
-}]);
+});
 

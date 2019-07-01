@@ -9,7 +9,7 @@
   </md-toolbar>
 
 
-  <div layout="column" style="height: 100%"  ng-controller="message">
+  <div layout="column" style="height: 100%"  ng-controller="friend-list">
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left"
                md-disable-backdrop="" md-whiteframe="4" md-is-locked-open="true" style="max-height:100%; overflow-x: hidden; background-color: white; width:25%;height:-webkit-fill-available;">
@@ -18,9 +18,9 @@
                	</md-toolbar>
                  <md-content>
                   <md-list flex>
-                    <md-list-item class="md-2-line" ng-repeat="x in data | filter: search_friend track by $index">
+                    <md-list-item class="md-2-line"  ng-click="user2(x)" ng-repeat="x in list | filter: search_friend track by $index">
                         <div class="md-list-item-text">
-                          <span>{{x.whom}}</span> 
+                          <span>{{x.email}}</span> 
                         </div>
                     </md-list-item><md-divider style="width: 100%"></md-divider>
                   </md-list>
@@ -30,7 +30,7 @@
     		<div class="msg">
     			<div class="msghd">
     				  	<md-toolbar style="width: 100%;background-color:#2980B9">
-               		<h4><center>MESSAGES</center></h4>
+               		<h4><center>{{selected.email}}</center></h4>
                	</md-toolbar>
           </div>
 

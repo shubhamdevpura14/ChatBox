@@ -1,7 +1,8 @@
 import webapp2
 from modelfile import *
 import json
-
+from google.appengine.api import users
+from methods import *
 
 class MsgHandler(webapp2.RequestHandler):
     def post(self):
@@ -12,6 +13,7 @@ class MsgHandler(webapp2.RequestHandler):
         message.user = messageq.get('user')
         message.whom = messageq.get('whom')
         message.text = messageq.get('text')
+        message.mail = messageq.get('mail')
         message.put()
         self.response.out.write("Done")
 
@@ -22,7 +24,7 @@ class MsHandler(webapp2.RequestHandler):
         d=[]
         for x in qry:
             d.append({
-                'text': x.text,
+                'mail': x.mail,
                 'key': x.key.urlsafe()
             })   
         self.response.out.write(json.dumps(d))
@@ -31,14 +33,14 @@ class Submit(webapp2.RequestHandler):
     def post(self):
         data =  json.loads(self.request.body)
         user = User()
-        user.text = data.get('text')
+        user.mail = data.get('mail')
         ref = user.put()
 
         users =  User.query().fetch()
         d=[]
         for x in users:
             d.append({
-                'text': x.text,
+                'mail': x.mail,
                 'key': x.key.urlsafe()
             })
         self.response.out.write(json.dumps(d))
@@ -46,24 +48,28 @@ class Submit(webapp2.RequestHandler):
 
 class ListMsgs(webapp2.RequestHandler):
     def get(self):
-        users =  User.query().fetch()
+        data =  UserProfile.query().fetch()
         d=[]
-        for x in users:
+        for x in data:
             d.append({
-                'text': x.text,
+                'first_name': x.first_name,
+				'last_name' : x.last_name,
+                'email': x.email,
                 'key': x.key.urlsafe()
             })
-        self.response.out.write(json.dumps(d))            
+        self.response.write(json.dumps(d))            
 
 class Mainpage(webapp2.RequestHandler):
     def get(self):
-        def get(self):
+        # def get(self):
         user = users.get_current_user()
-        user_mail = user.mail()
-        user_name = user.username()
-        check = User.query(User.mail == user_mail).get()
-        if not check:
-            post_data(user_mail)
+        user_email = user.email()
+        user_id = user.user_id()
+        print(user_email)
+        print(user_id)
+        check_user = UserProfile.query(UserProfile.email == user_email).get()
+        if not check_user:
+            post_data(user_email)
         self.redirect("/chat#!/chat")
         
              
@@ -73,6 +79,6 @@ app = webapp2.WSGIApplication([
     # ('/handlers/submit', Submit),
     ('/handlers/get', MsHandler),
     ('/handlers/save',MsgHandler),
-     ('/handlers/submit', Submit),
+    ('/handlers/submit', Submit),
     ('/handlers/ListMsgs', ListMsgs),
 ])

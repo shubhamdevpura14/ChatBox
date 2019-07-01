@@ -4,11 +4,6 @@ threadsafe: true
 
 handlers:
 
-- url: /handlers.*
-  login: required
-  script: main.app
-
-
 - url: /lib
   static_dir: app/lib
 
@@ -17,6 +12,14 @@ handlers:
 
 - url: /statics
   static_dir: app/statics
+
+- url: /handlers.*
+  login: required
+  script: main.app
+
+- url: /
+  script: main.app
+  login: required
 
 - url: /.*
   login: required

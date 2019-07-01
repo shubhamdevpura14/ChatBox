@@ -1,4 +1,13 @@
- app.controller('message',function ($scope, $http){
+app.controller('friend-list',function($scope,$http){
+    $http.get('/handlers/ListMsgs').then(function(response){
+      $scope.list = response.data; 
+      })
+      $scope.selected = null;
+      $scope.user2 = function(x) {
+        $scope.selected = x;
+      }
+  });
+/* app.controller('message',function ($scope, $http){
     $scope.text = null;
     $scope.postdata = function (text) {
         var data = {
@@ -17,3 +26,4 @@
         return $http.get('/handlers/')
                                }                        
  });
+*/
