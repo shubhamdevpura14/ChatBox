@@ -9,7 +9,7 @@ class MsgHandler(webapp2.RequestHandler):
         
         messageq = json.loads(self.request.body)
         print messageq
-        message = Message()
+        message = UserProfile()
         message.user = messageq.get('user')
         message.whom = messageq.get('whom')
         message.text = messageq.get('text')
@@ -20,11 +20,11 @@ class MsgHandler(webapp2.RequestHandler):
 class MsHandler(webapp2.RequestHandler):
     def get(self):
         
-        qry = Message.query().order(-Message.user)
+        qry = UserProfile.query().order(UserProfile.date)
         d=[]
         for x in qry:
             d.append({
-                'mail': x.mail,
+                'text': x.text,
                 'key': x.key.urlsafe()
             })   
         self.response.out.write(json.dumps(d))
@@ -52,10 +52,9 @@ class ListMsgs(webapp2.RequestHandler):
         d=[]
         for x in data:
             d.append({
-                'first_name': x.first_name,
-				'last_name' : x.last_name,
                 'email': x.email,
-                'key': x.key.urlsafe()
+                'key': x.key.urlsafe(),
+                'text': x.text
             })
         self.response.write(json.dumps(d))            
 

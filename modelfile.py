@@ -1,12 +1,13 @@
 from google.appengine.ext import ndb
 class UserProfile(ndb.Model):
-	"""Model for User Profiles"""
-	first_name = ndb.StringProperty()
-	last_name = ndb.StringProperty()
-	username = ndb.StringProperty()
-	email = ndb.StringProperty()
-	user_id = ndb.StringProperty()
-	date = ndb.DateTimeProperty(auto_now_add=True)
+    """Model for User Profiles"""
+    username = ndb.StringProperty()
+    email = ndb.StringProperty()
+    user_id = ndb.StringProperty()
+    date = ndb.DateTimeProperty(auto_now_add=True)
+    text = ndb.TextProperty()
+    sender = ndb.StringProperty()
+    receiver = ndb.StringProperty()
 
 
 class User(ndb.Model):

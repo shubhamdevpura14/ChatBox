@@ -6,8 +6,6 @@ def post_info():
     row = []
     for x in data:
         row.append({
-            'first_name': x.first_name,
-            'last_name' : x.last_name,
             'key' : x.key.urlsafe(),
             'email' : x.email
         })
