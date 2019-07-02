@@ -22,7 +22,6 @@ app.controller('friend-list',function($scope, $http, $timeout){
     function sendData(data) {
         var ss = JSON.stringify(data);
         return $http.post('/handlers/save', ss).then( function(d) {
-
             $timeout( function(){
                 a()
                     }, 5000 );
@@ -30,11 +29,9 @@ app.controller('friend-list',function($scope, $http, $timeout){
             })
     }
       
-        $scope.postdata = function (text,receiver,sender) {
+        $scope.postdata = function (text) {
         var data = {
             text: text,
-            receiver: receiver,
-            sender: sender
                    };
         sendData(data)
 
