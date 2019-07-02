@@ -29,11 +29,11 @@
                		   <h4><center>{{selected.email}}</center></h4>
                        	</md-toolbar>
                         </div>
-                        <div>{{x.text}}</div>      
+                              
           <md-content>
-          <div class="chats">
-        <div layout="column" >
-         <div style="height: 82vh;overflow-y: scroll;">              
+          <div class="chats" >
+        <div layout="column" ng-repeat="x in data">
+         <div style="height: 82vh;overflow-y: scroll;">{{x.text}}             
             <div class="receiver">
             </div>
             <div class="sender">
