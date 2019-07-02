@@ -4,14 +4,9 @@ class UserProfile(ndb.Model):
     username = ndb.StringProperty()
     email = ndb.StringProperty()
     user_id = ndb.StringProperty()
-    date = ndb.DateTimeProperty(auto_now_add=True)
-    text = ndb.TextProperty()
+
+class Message(ndb.Model):
+    text = ndb.StringProperty()
     sender = ndb.StringProperty()
     receiver = ndb.StringProperty()
-
-
-class User(ndb.Model):
-    text = ndb.StringProperty()
-    user = ndb.StringProperty()
-    password = ndb.StringProperty()
-    username = ndb.StringProperty()
+    date = ndb.DateTimeProperty(auto_now_add=True)

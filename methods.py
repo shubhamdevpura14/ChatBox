@@ -7,8 +7,8 @@ def post_info():
     for x in data:
         row.append({
             'key' : x.key.urlsafe(),
-            'email' : x.email
-        })
+             'email' : x.email
+         })
     self.response.write(json.dumps(row))
 
 def post_data(user_email):
