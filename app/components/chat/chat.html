@@ -24,32 +24,35 @@
 <!-- sidenav headeer end -->
 <!-- Chat list -->
     		           <div class="msg" >
-    			         <div class="msghd">
+    			         <div class="msghd">  
     				  	   <md-toolbar style="width: 100%;background-color:#2980B9">
                		   <h4><center>{{selected.email}}</center></h4>
                        	</md-toolbar>
                         </div>
                               
           <md-content>
-          <div class="chats" >
-        <div layout="column" ng-repeat="x in data">
-         <div style="height: 82vh;overflow-y: scroll;">{{x.text}}             
+          <div class="chats" ng-repeat="x in data">
+        <div layout="column">
+         <div style="height: 82vh;overflow-y: scroll;">            
             <div class="receiver">
             </div>
-            <div class="sender">
+            <div class="sender">{{x.text}}
             </div> 
         </div>
-         </div>
+        </div>
+        </div>
         </md-content>
         
  <!-- Chat list end -->
 <!-- Input Mesage Bar -->
                        <footer>
-                      <div class="msg_type">
-                      <div layout layout-align="start center" >
-                      <div class="message-input" layout layout-align="start center" >
-                      <input class="input-box" ng-model="text" type="text" name="input" placeholder="Type a message.." autocomplete="off" ng-model="msg" autofocus></input>
-                        <button fab-button ng-click="postdata(text)" ng-click="msg=''">SEND</button> 
+                      <md-toolbar style="background-color: #ffffff">
+                        <div class="msg_type">
+                        <div layout layout-align="start center" >
+                        <div class="message-input" layout layout-align="start center" >
+                        <input class="input-box" ng-model="text"  ng-model="selected" type="text" name="input" placeholder="Type a message.." autocomplete="off" ng-model="msg" autofocus></input>
+                        <button fab-button ng-click="postdata(text, selected)" ng-click="msg=''">SEND</button> 
+                      </md-toolbar>
                         </div>
                       </div>
                     </div>

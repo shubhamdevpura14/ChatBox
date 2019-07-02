@@ -9,7 +9,9 @@ class Messageinfo(webapp2.RequestHandler):
         
         messageq = json.loads(self.request.body)
         print messageq
+        user = users.get_current_user()
         message = Message()
+        message.sender = user.email()
         message.text = messageq.get('text')
         message.receiver = messageq.get('receiver')
         message.put()
@@ -18,7 +20,7 @@ class Messageinfo(webapp2.RequestHandler):
 # class Userinfo(webapp2.RequestHandler):
 #     def post(self):
         
-#         user1 = json.loads(self.request.body)
+#         user1 = json.loads(self.request.body)selected
 #         print user1
 #         userr = UserProfile()
 #         userr.user = user1.get('username')
@@ -33,7 +35,8 @@ class MsHandler(webapp2.RequestHandler):
         for x in qry:
             d.append({
                 'text': x.text,
-                'key': x.key.urlsafe()
+                'receiver': x.receiver,
+                'sender': x.sender
             })   
         self.response.out.write(json.dumps(d))
 

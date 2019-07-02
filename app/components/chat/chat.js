@@ -15,13 +15,15 @@ app.controller('friend-list',function($scope, $http, $timeout){
     function a() {
         getDatafromdb().then( function(d) {
             $scope.data = d.data;
-
+            $scope.sender = d.sender;
+            $scope.receiver = d.receiver;
         })
         }
     
     function sendData(data) {
+        debugger
         var ss = JSON.stringify(data);
-        return $http.post('/handlers/save', ss).then( function(d) {
+        return $http.post('/handlers/save', ss).then (function(d) {
             $timeout( function(){
                 a()
                     }, 5000 );
@@ -29,10 +31,12 @@ app.controller('friend-list',function($scope, $http, $timeout){
             })
     }
       
-        $scope.postdata = function (text) {
+        $scope.postdata = function (text, selected) {
         var data = {
             text: text,
-                   };
+            receiver: selected.email
+                   };   
+            debugger  
         sendData(data)
 
 
