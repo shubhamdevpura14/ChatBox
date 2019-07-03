@@ -26,7 +26,7 @@ app.controller('friend-list',function($scope, $http, $timeout){
         return $http.post('/handlers/save', ss).then (function(d) {
             $timeout( function(){
                 a()
-                    }, 5000 );
+                    }, 500 );
                   return d
             })
     }
