@@ -57,7 +57,7 @@ class MsHandler(webapp2.RequestHandler):
 #         self.response.out.write(json.dumps(d))
 
 
-class Listmsgs(webapp2.RequestHandler):
+class Contacts(webapp2.RequestHandler):
     def get(self):
         data =  UserProfile.query().fetch()
         d=[]
@@ -88,6 +88,6 @@ app = webapp2.WSGIApplication([
     ('/handlers/get', MsHandler),
     ('/handlers/save',Messageinfo),
     # ('/handlers/submit', Submit),
-    ('/handlers/listmsgs', Listmsgs),
+    ('/handlers/Contacts', Contacts),
     # ('/handlers/Userinfo', Userinfo),
 ])

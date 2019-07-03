@@ -1,5 +1,5 @@
 app.controller('friend-list',function($scope, $http, $timeout){
-    $http.get('/handlers/listmsgs').then(function(response){
+    $http.get('/handlers/Contacts').then(function(response){
       $scope.list = response.data; 
       })
       $scope.selected = null;
