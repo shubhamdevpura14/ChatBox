@@ -43,3 +43,14 @@ app.controller('friend-list',function($scope, $http, $timeout){
     }
                                
  });
+angular
+.module('customSidenavDemo', ['ngMaterial'])
+  .controller('AppCtrl', function ($scope, $mdSidenav) {
+    $scope.toggleLeft = buildToggler('left');
+
+    function buildToggler(componentId) {
+      return function() {
+        $mdSidenav(componentId).toggle();
+      };
+    }
+  });
