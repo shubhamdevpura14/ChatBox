@@ -21,13 +21,13 @@ config(function($locationProvider, $routeProvider) {
 
   $routeProvider
   .when("/", {
-    template : "go to login page <a href='/#!/login'>login</a>"
+    template : ""
   })
   /*.when("/login", {
     templateUrl : "/component/login/login.html"
   })*/
   .when("/chat", {
-    templateUrl : "/component/chat/chat.html",
+    templateUrl : "component/chat/chat.html",
     controller: 'friend-list'
     })
   //.otherwise({redirectTo: '/login'});

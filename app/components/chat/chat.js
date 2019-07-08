@@ -6,7 +6,8 @@ app.controller('friend-list',function($scope, $http, $timeout){
       $scope.user2 = function(x) {
         $scope.selected = x;
       }
-
+      $http.get('/').then(function(response)
+        {$scope.user = response.data;})
 // app.controller('message',function ($scope, $http){
     $scope.text = null;
     function getDatafromdb() {

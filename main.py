@@ -73,13 +73,15 @@ class Mainpage(webapp2.RequestHandler):
         # def get(self):
         user = users.get_current_user()
         user_email = user.email()
-        user_id = user.user_id()
         print(user_email)
-        print(user_id)
         check_user = UserProfile.query(UserProfile.email == user_email).get()
         if not check_user:
             post_data(user_email)
-        self.redirect("/chat#!/chat")
+        current_user_info = {
+            "email" : user_email
+        }
+        self.response.write(json.dumps(current_user_info))
+        # self.redirect("/chat#!/chat")
         
              
 
