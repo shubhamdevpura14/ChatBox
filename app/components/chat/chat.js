@@ -1,24 +1,26 @@
-app.controller('AppCtrl', function ($scope, $mdSidenav) {
-    $scope.toggleLeft = buildToggler('left');
+// app.controller('AppCtrl', function ($scope, $mdSidenav) {
+//     $scope.toggleLeft = buildToggler('left');
 
-    function buildToggler(componentId) {
-      return function() {
-        $mdSidenav(componentId).toggle();
-      };
-    }
-  });
+//     function buildToggler(componentId) {
+//       return function() {
+//         $mdSidenav(componentId).toggle();
+//       };
+//     }
+//   });
 
 
 app.controller('friend-list',function($scope, $http, $timeout){
     $http.get('/handlers/Contacts').then(function(response){
-      $scope.list = response.data; 
-      })
+        $scope.owner = response.data.current_user;
+        cont_list = JSON.parse(response.data.d)
+        $scope.list = cont_list;
+    })
       $scope.selected = null;
       $scope.user2 = function(x) {
         $scope.selected = x;
       }
-      $http.get('/').then(function(response)
-        {$scope.user = response.data;})
+    //   $http.get('/').then(function(response)
+    //     {$scope.user = response.data;})
 // app.controller('message',function ($scope, $http){
     $scope.text = null;
     function getDatafromdb() {
@@ -48,21 +50,8 @@ app.controller('friend-list',function($scope, $http, $timeout){
             text: text,
             receiver: selected.email
                    };   
-            debugger  
+ 
         sendData(data)
 
-
-    }
-                               
- });
-angular
-.module('customSidenavDemo', ['ngMaterial'])
-  .controller('AppCtrl', function ($scope, $mdSidenav) {
-    $scope.toggleLeft = buildToggler('left');
-
-    function buildToggler(componentId) {
-      return function() {
-        $mdSidenav(componentId).toggle();
-      };
     }
   });

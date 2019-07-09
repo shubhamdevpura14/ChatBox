@@ -66,22 +66,22 @@ class Contacts(webapp2.RequestHandler):
                 'email': x.email,
                 'key': x.key.urlsafe()
             })
-        self.response.write(json.dumps(d))            
-
-class Mainpage(webapp2.RequestHandler):
-    def get(self):
-        # def get(self):
         user = users.get_current_user()
         user_email = user.email()
         print(user_email)
         check_user = UserProfile.query(UserProfile.email == user_email).get()
         if not check_user:
             post_data(user_email)
-        current_user_info = {
-            "email" : user_email
-        }
-        self.response.write(json.dumps(current_user_info))
-        # self.redirect("/chat#!/chat")
+            
+        owner_email = user_email
+        self.response.write(json.dumps({"d" : json.dumps(d), "current_user" : owner_email}))            
+
+class Mainpage(webapp2.RequestHandler):
+    def get(self):
+        # def get(self):
+        
+        self.redirect("/chat#!/chat")
+        
         
              
 
