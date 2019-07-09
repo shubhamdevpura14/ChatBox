@@ -4,16 +4,13 @@
   </h3>
 </md-toolbar>
 <!-- sidnav header  -->
-
+<div ng-controller="AppCtrl">
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left"
-     md-disable-backdrop="" md-whiteframe="2" md-is-locked-open="$mdMedia('gt-md" style="max-height:100%; overflow: hidden; background-color: white; width:25%;height:-webkit-fill-available;">
+     md-disable-backdrop="" md-whiteframe="4" md-is-locked-open="$mdMedia('gt-md')" style="max-height:100%; overflow: hidden; background-color: white; width:25%;height:-webkit-fill-available;">
    <md-toolbar class="md-theme-indigo" style="background-color:#00838F;">
           <div class="md-toolbar-tools" style="padding:14px 0;">
-          <div class="dropdown">
-                <md-button onclick="myFunction()" class="md-icon-button">
-              </md-button> 
-            </div>
+         
             <p>{{message.sender}}</p>
             <md-button ng-click="toggleLeft()" class="md-icon-button" style="background-color: #00838F;border-radius: 6px;position: absolute;right: 20px" hide-gt-md>
             <md-icon style="color: white">keyboard_backspace</md-icon>
@@ -70,6 +67,7 @@
         </div>     
         <!-- </div>   -->
   </section>
+</div>
  <!-- Chat list end -->
 <!-- Input Mesage Bar -->
      

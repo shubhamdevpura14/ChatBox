@@ -1,3 +1,14 @@
+app.controller('AppCtrl', function ($scope, $mdSidenav) {
+    $scope.toggleLeft = buildToggler('left');
+
+    function buildToggler(componentId) {
+      return function() {
+        $mdSidenav(componentId).toggle();
+      };
+    }
+  });
+
+
 app.controller('friend-list',function($scope, $http, $timeout){
     $http.get('/handlers/Contacts').then(function(response){
       $scope.list = response.data; 
