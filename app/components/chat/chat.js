@@ -54,4 +54,13 @@ app.controller('friend-list',function($scope, $http, $timeout){
         sendData(data)
 
     }
+    $scope.getchat = function (selected) {
+        var data = {
+
+            receiver: selected.email
+                   };   
+ 
+        sendData(data)
+
+    }
   });

@@ -18,8 +18,8 @@
 </md-toolbar>  
 <md-content>
   <md-list flex>
-     <md-list-item class="md-2-line"  ng-click="user2(x)" ng-repeat="x in list | filter: search_friend   track by $index">
-        <div class="md-list-item-text">
+     <md-list-item class="md-2-line"  ng-click="user2(x);getchat(x)" ng-repeat="x in list | filter: search_friend   track by $index">
+        <div class="md-list-item-text"  >
             <span>{{x.email}}</span> 
        </div>
       </md-list-item><md-divider style="width: 100%"></md-divider>
@@ -32,44 +32,54 @@
   <h4><center>{{selected.email}}</center></h4>
   </md-toolbar>
 </div> -->
-<div class="msg" >
-    <div class="msghd">  
-      <md-toolbar style="background-color:#2980B9">
-        <h4><center>{{selected.email}}</center></h4>
+<div layout="column" flex>  
+      <md-toolbar class="md-theme-indigo"  style="background-color:#2980B9">
+        <div class="md-toolbar-tools">
+            <md-button ng-click="toggleLeft()"class="md-icon-button" style="background-color: #00838F;" hide-gt-md>
+                <md-icon style="color:black">keyboard_arrow_right</md-icon>
+              </md-button>
+        <p>{{selected.email}}</p>
+        </div>
+        
       </md-toolbar>
-     
-     
+
+      <div layout="column"  layout-align="start center" flex>       
        <md-content>
         <div class="chats" > 
          <div layout="column">
-          <div style="height: 76vh;overflow-y: scroll;">
-            <div ng-repeat="x in data">    
-              <div class="receiver">
+          <div style="height:76vh; overflow-y:scroll;"> 
+            <div layout="column"  layout-align="start center" flex>
+                <!-- ng-class="selected.user_email== x.receiver ? 'sender': 'receiver'" -->
+            <div ng-repeat="x in data" >    
+              <div class="sender">
                {{x.text}}
               </div>
+              <div class="receiver">
+                  {{x.text}}
+                 </div>
             </div>            
           </div>
          </div>
         </div>
+      </div>
       </md-content> 
-    </div>
+      </div>
 
+
+<div layout="column"  layout-align="end start" flex>
     <footer>
         <div class="msg_type">
           <div layout layout-align="start center" >
             <div class="message-input" layout layout-align="start center" >
               <input class="input-box" ng-model="text"  ng-model="selected" type="text" name="input" placeholder="Type a message.." autocomplete="off" ng-model="msg" autofocus></input>
               <md-button fab-button ng-click="postdata(text, selected)" ng-click="msg=''">
-                <md-icon>send</md-icon>
+                <!-- <md-icon>send</md-icon> -->
+                <md-icon style="color:black">send</md-icon>
               </md-button> 
             </div>
           </div>
         </div>
       </footer>
-    </div>
- 
-  <!-- <md-button ng-click="toggleLeft()"class="md-icon-button" style="background-color: #00838F;" hide-gt-md>
-    <md-icon style="color:black">keyboard_arrow_right</md-icon>
-  </md-button>  -->
-
+</div> 
+</div>
 </section> 
