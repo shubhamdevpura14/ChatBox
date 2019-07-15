@@ -40,11 +40,11 @@
  footer{
  	position: fixed;
  	width: 75%;
- 	/* bottom: 14px; */
+ 	/* bottom: 8px; */
  }
  .message-input{
    
- 	padding: 11px;
+ 	padding: 20px;
  	margin-left: 10px; 
  	width: 95%;
  }
