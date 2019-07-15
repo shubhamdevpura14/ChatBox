@@ -42,21 +42,20 @@
         </div>
         
       </md-toolbar>
-
+     
+      <div style="height:75vh; overflow-y:scroll;"> 
       <div layout="column"  layout-align="start center" flex>       
        <md-content>
         <div class="chats" > 
          <div layout="column">
-          <div style="height:76vh; overflow-y:scroll;"> 
+          <!-- <div style="height:76vh; overflow-y:scroll;">  -->
             <div layout="column"  layout-align="start center" flex>
                 <!-- ng-class="selected.user_email== x.receiver ? 'sender': 'receiver'" -->
             <div ng-repeat="x in data" >    
               <div class="sender">
                {{x.text}}
               </div>
-              <div class="receiver">
-                  {{x.text}}
-                 </div>
+        
             </div>            
           </div>
          </div>
@@ -64,6 +63,7 @@
       </div>
       </md-content> 
       </div>
+
 
 
 <div layout="column"  layout-align="end start" flex>

@@ -40,17 +40,17 @@
  footer{
  	position: fixed;
  	width: 75%;
- 	bottom: 5px;
+ 	/* bottom: 14px; */
  }
  .message-input{
    
  	padding: 11px;
  	margin-left: 10px; 
- 	width: 100%;
+ 	width: 95%;
  }
  .input-box{
- 	background: transparent;
- 	width: 100%;
+ 	background:whitesmoke;
+ 	width: 95%;
  }
  .receiver {
   word-break: break-all;
