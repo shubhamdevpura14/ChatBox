@@ -12,7 +12,7 @@ class Messageinfo(webapp2.RequestHandler):
         user = users.get_current_user()
         message = Message()
         message.sender = user.email()
-        message.text = messageq.get('text')
+        # message.text = messageq.get('text')
         message.receiver = messageq.get('receiver')
         message.put()
         self.response.out.write("Done")
