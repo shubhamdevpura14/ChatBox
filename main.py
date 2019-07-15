@@ -40,6 +40,10 @@ class MsHandler(webapp2.RequestHandler):
             })   
         self.response.out.write(json.dumps(d))
 
+
+
+        
+
 # class Submit(webapp2.RequestHandler):
 #     def post(self):
 #         data =  json.loads(self.request.body)

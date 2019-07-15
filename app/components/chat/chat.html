@@ -50,9 +50,8 @@
          <div layout="column">
           <!-- <div style="height:76vh; overflow-y:scroll;">  -->
             <div layout="column"  layout-align="start center" flex>
-                <!-- ng-class="selected.user_email== x.receiver ? 'sender': 'receiver'" -->
-            <div ng-repeat="x in data" >    
-              <div class="sender">
+              <div ng-repeat="x in data" ng-class="owner == x.sender ? 'receiver': 'sender'"> 
+              <div >
                {{x.text}}
               </div>
         
@@ -66,11 +65,11 @@
 
 
 
-<div layout="column"  layout-align="end start" flex>
+ <div layout="column"  layout-align="end start" flex>
     <footer>
         <div class="msg_type">
-          <div layout layout-align="start center" >
-            <div class="message-input" layout layout-align="start center" >
+          <div layout layout-align="start end" >
+            <div class="message-input" layout layout-align="start end" >
               <input class="input-box" ng-model="text"  ng-model="selected" type="text" name="input" placeholder="Type a message.." autocomplete="off" ng-model="msg" autofocus></input>
               <md-button fab-button ng-click="postdata(text, selected)" ng-click="msg=''">
                 <!-- <md-icon>send</md-icon> -->
