@@ -44,11 +44,11 @@
       </md-toolbar>
      
       <div style="height:69.5vh; overflow-y:scroll;"> 
-      <div layout="column"  layout-align="start center" flex>       
+      <div layout="column"  layout-align="start end" flex>       
        <md-content>
         <div class="chats" > 
          <div layout="column">
-          <!-- <div style="height:76vh; overflow-y:scroll;">  -->
+            <!-- <div style="height:76vh; overflow-y:scroll;"> -->
             <div layout="column"  layout-align="start center" flex>
               <div ng-repeat="x in data" ng-class="owner == x.sender ? 'receiver': 'sender'"> 
               <div >
