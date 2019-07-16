@@ -18,7 +18,7 @@
 </md-toolbar>  
 <md-content>
   <md-list flex>
-     <md-list-item class="md-2-line"  ng-click="user2(x);getchat(x)" ng-repeat="x in list | filter: search_friend   track by $index">
+     <md-list-item class="md-2-line"  ng-click="user2(x)" ng-repeat="x in list | filter: search_friend   track by $index">
         <div class="md-list-item-text"  >
             <span>{{x.email}}</span> 
        </div>
@@ -71,7 +71,7 @@
           <div layout layout-align="start end" >
             <div class="message-input" layout layout-align="start end" >
               <input class="input-box" ng-model="text"  ng-model="selected" type="text" name="input" placeholder="Type a message.." autocomplete="off" ng-model="msg" autofocus></input>
-              <md-button fab-button ng-click="postdata(text, selected)" ng-click="msg=''">
+              <md-button fab-button ng-click="postdata(text, selected); text=''" ng-click="msg=''">
                 <!-- <md-icon>send</md-icon> -->
                 <md-icon style="color:black">send</md-icon>
               </md-button> 
