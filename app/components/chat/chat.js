@@ -1,8 +1,6 @@
-
-
-app.controller('friend-list',function($scope, $http, $timeout){
+app.controller('friend-list',function($scope, $http, $interval){
     $http.get('/handlers/Contacts').then(function(response){
-        debugger
+
         $scope.owner = response.data.current_user;
         cont_list = JSON.parse(response.data.d)
         $scope.list = cont_list;
@@ -10,17 +8,24 @@ app.controller('friend-list',function($scope, $http, $timeout){
       $scope.selected = null;
       $scope.user2 = function(x) {
         $scope.selected = x;
+        $interval(a,500);
       }
 
     $scope.text = null;
     function getDatafromdb() {
-        return $http.get('/handlers/get')
+        var data = {
+            receiver: $scope.selected.email
+                   };   
+ 
+        var ss = JSON.stringify(data);
+        return $http.post('/handlers/get',ss)
             } 
-    function a() {
-        getDatafromdb().then( function(d) {
-            $scope.data = d.data;
-            $scope.sender = d.sender;
-            $scope.receiver = d.receiver;
+        function a() {
+            debugger
+        getDatafromdb().then( function(response) { 
+            $scope.chat = response.data;
+            console.log($scope.chat.text);
+            debugger
         })
         }
       
@@ -31,13 +36,7 @@ app.controller('friend-list',function($scope, $http, $timeout){
             receiver: $scope.selected.email
                    };   
  
-                   var ss = JSON.stringify(data);
-                   return $http.post('/handlers/save', ss).then (function(d) {
-                       $timeout( function(){
-                           a()
-                               }, 500 );
-                             return d
-                       })
-
-    }
+        var ss = JSON.stringify(data);
+        $http.post('/handlers/save', ss)
+            }
   });

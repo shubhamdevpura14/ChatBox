@@ -43,7 +43,7 @@
 <div layout="column" flex>  
       <md-toolbar class="md-theme-indigo"  style="background-color:#2980B9">
         <div class="md-toolbar-tools">
-            <md-button ng-click="toggleLeft()"class="md-icon-button" style="background-color: #00838F;" hide-gt-md>
+            <md-button ng-click="user2();toggleLeft()"class="md-icon-button" style="background-color: #00838F;" hide-gt-md>
                 <md-icon style="color:black">keyboard_arrow_right</md-icon>
               </md-button>
         <p>{{selected.email}}</p>
@@ -58,7 +58,7 @@
          <div layout="column">
             <div>
             <div layout="column"  layout-align="start center" flex>
-              <div ng-repeat="x in data" ng-class="owner == x.sender ? 'receiver': 'sender'"> 
+              <div ng-repeat="x in chat| orderBy:'-' track by $index" ng-class="owner != x.sender ? 'receiver': 'sender'"> 
               <div >
                {{x.text}}
               </div>

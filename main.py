@@ -16,32 +16,23 @@ class Messageinfo(webapp2.RequestHandler):
         message.text = messageq.get('text')
         message.receiver = messageq.get('receiver')
         message.put()
-        self.response.out.write("Done")
-
-# class Userinfo(webapp2.RequestHandler):
-#     def post(self):
-        
-#         user1 = json.loads(self.request.body)selected
-#         print user1
-#         userr = UserProfile()
-#         userr.user = user1.get('username')
-#         userr.put()
-#         self.response.out.write("Done")
 
 class MsHandler(webapp2.RequestHandler):
-    def get(self):
-        put_user()
-        time.sleep(1)
-        qry = Message.query().order(Message.date)
+    def post(self):
+        user = users.get_current_user()
+        messageq = json.loads(self.request.body)
+        sender = user.email()
+        receiver = messageq.get('receiver')
+        chats = Message.query(Message.sender.IN([sender,receiver]) , Message.receiver.IN([sender,receiver])).\
+                               order(-Message.date).fetch()
         d=[]
-        for x in qry:
+        for x in chats:
             d.append({
                 'text': x.text,
                 'receiver': x.receiver,
                 'sender': x.sender
-            })   
-        self.response.out.write(json.dumps(d))
-
+            })  
+        self.response.write(json.dumps(d))
 
 class Contacts(webapp2.RequestHandler):
     def get(self):
@@ -74,7 +65,6 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/', Mainpage),
     ('/handlers/get', MsHandler),
     ('/handlers/save',Messageinfo),
-    # ('/handlers/submit', Submit),
     ('/handlers/Contacts', Contacts),
     # ('/handlers/Userinfo', Userinfo),
 ])
