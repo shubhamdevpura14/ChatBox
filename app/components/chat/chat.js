@@ -21,11 +21,8 @@ app.controller('friend-list',function($scope, $http, $interval){
         return $http.post('/handlers/get',ss)
             } 
         function a() {
-            debugger
         getDatafromdb().then( function(response) { 
             $scope.chat = response.data;
-            console.log($scope.chat.text);
-            debugger
         })
         }
       
